@@ -1,0 +1,75 @@
+package org.example.core;
+
+public class MenuOptions
+{
+	public enum MainMenuOptions
+	{
+		EXIT,
+		PART_1,
+		PART_2
+	}
+
+	public enum Part1MenuOptions
+	{
+		EXIT,
+		DISPLAY_ALL_MOVIES,
+		FIND_MOVIE_BY_TITLE,
+		DISPLAY_MOVIES_SORTED_BY_RATING,
+		RUN_PRIORITY_QUEUE_SIMULATION,
+		DISPLAY_MOVIES_SORTED_BY_TITLE_AND_GENRE
+	}
+
+	public enum PriorityQueueSimulationOptions
+	{
+		EXIT,
+		ADD_THIRD_PRIORITY_ELEMENTS,
+		ADD_SECOND_PRIORITY_ELEMENTS,
+		ADD_TOP_PRIORITY_ELEMENT,
+		REMOVE_AND_DISPLAY_TOP_ELEMENT,
+		REMOVE_AND_DISPLAY_ALL_ELEMENTS
+	}
+
+	public enum Part2MenuOptions
+	{
+		EXIT,
+		FIND_AND_DISPLAY_ALL_MOVIES,
+		FIND_AND_DISPLAY_MOVIE_BY_NAME,
+		FIND_AND_DELETE_MOVIE_BY_NAME,
+		ADD_NEW_MOVIE,
+		FILTER_MOVIES,
+		DISPLAY_ALL_MOVIES_JSON,
+		FIND_AND_DISPLAY_MOVIES_BY_TITLE_JSON
+	}
+
+	public enum MovieFilterOptions
+	{
+		FILTER_BY_RATING,
+		FILTER_BY_GENRE
+	}
+
+	public enum ClientMenuOptions
+	{
+		EXIT,
+		DISPLAY_MOVIE_BY_TITLE,
+		DISPLAY_ALL_MOVIES,
+		ADD_MOVIE,
+		DELETE_MOVIE_BY_TITLE,
+		SORT_MOVIES,
+		FILTER_MOVIES,
+		CHECK_MOVIE_EXISTS,
+		NONE
+	}
+
+	public enum MovieSortOptions
+	{
+		SORT_BY_RATING,
+		SORT_BY_GENRE
+	}
+
+//	public enum AddIngredientsOptions
+//	{
+//		ONE_AT_A_TIME,
+//		ALL_AT_ONCE
+//	}
+
+}

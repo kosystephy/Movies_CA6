@@ -39,7 +39,7 @@ CREATE TABLE `movie` (
 -- Dumping data for database `movies`
 --
 
-INSERT INTO `movie` (`movieID`, `title`, `producer`, `release_date`, `type`,  `genre`,  `duration` ) VALUES
+INSERT INTO `movie` (`movieID`, `title`, `producer`, `release_date`, `type`,  `genre`,  `duration`,`ratings` ) VALUES
 (1, 'Avatar', 'Joy Thomas', '2009-12-10','movie','science fiction','01:58:12',3.3),
 (2, 'Titanic', 'Kate Grant', '1997-11-18','movie','romance','02:01:45',4.5),
 (3, 'The Avengers','Gavin Doyle', '2012-04-25','series','super-hero','02:30:12',3.8),
