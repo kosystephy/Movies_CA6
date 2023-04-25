@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.constants.DatabaseDetails;
+
 import org.example.exceptions.DaoException;
 
 import java.sql.Connection;
@@ -9,18 +9,12 @@ import java.sql.SQLException;
 
 public class MySqlDao
 {
-	private final String databaseURL;
-
-	public MySqlDao(String databaseURL)
-	{
-		this.databaseURL = databaseURL;
-	}
 
 	public Connection getConnection() throws DaoException
 	{
-		String driver = DatabaseDetails.DRIVER;
-
-		String username = DatabaseDetails.DB_USERNAME;
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String url = "jdbc:mysql://localhost:3306/movies";
+		String username = "root";
 		String password = "";
 
 		Connection connection = null;
@@ -28,7 +22,7 @@ public class MySqlDao
 		try
 		{
 			Class.forName(driver);
-			connection = DriverManager.getConnection(this.databaseURL, username, password);
+			connection = DriverManager.getConnection(url, username, password);
 		}
 		catch(ClassNotFoundException e)
 		{

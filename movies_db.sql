@@ -20,7 +20,7 @@ CREATE TABLE `movie` (
   `type` varchar(15),
   `genre` varchar(50),
   `duration` time,
-  `ratings` float(1,1),
+  `ratings` decimal(3,2),
   PRIMARY KEY(movieID)
   );
 

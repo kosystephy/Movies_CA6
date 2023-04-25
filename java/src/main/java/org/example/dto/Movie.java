@@ -1,15 +1,13 @@
 package org.example.dto;
 
-//
-//import org.example.constants.Colors;
-import org.example.core.MenuOptions;
+
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.example.core.MenuOptions.*;
 
 public class Movie implements Comparable<Movie>, Serializable {
 
