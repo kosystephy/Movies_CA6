@@ -1,7 +1,7 @@
 package org.example.dao;
 
 
-//import org.example.IFilter;
+import org.example.IFilter;
 import org.example.dto.Movie;
 
 import org.example.exceptions.DaoException;
@@ -269,6 +269,29 @@ public class MySqlMovieDao extends MySqlDao implements MovieDaoInterface
 		{
 			throw new DaoException("insertMovieTableRecord() " + e.getMessage());
 		}
+	}
+
+	public List<Movie> filterMovies(IFilter filter) throws DaoException
+	{
+		List<Movie> filteredList = new ArrayList<>();
+
+		try
+		{
+			List<Movie> allMovie = findAllMovie();
+			for(Movie movie : allMovie)
+			{
+				if(filter.matches(movie))
+				{
+					filteredList.add(movie);
+				}
+			}
+		}
+		catch (DaoException daoe)
+		{
+			System.out.println("filterArtists() " + daoe.getMessage());
+		}
+
+		return filteredList;
 	}
 
 }
