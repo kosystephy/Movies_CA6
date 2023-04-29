@@ -112,6 +112,19 @@ public class Server {
 
 					if (message.startsWith("1"))
 					{
+						String movies = ImovieDao.findAllMoviesJson();     // call a method in the DAO
+						if( movies != null ) // null returned if userid and password not valid
+						{
+							socketWriter.println(movies);  // send message to client
+						}//sends the movie by id to the client
+						else
+						{
+							String error="error : No movies found!";
+							socketWriter.println(error);
+						}
+					}
+					else if (message.startsWith("2"))
+					{
 						int movieId=Integer.parseInt(message.substring(2));
 						String movie = ImovieDao.findMoviesByIdJson(movieId);
 						if( movie != null ) // null returned if userid and password not valid
@@ -124,26 +137,13 @@ public class Server {
 							socketWriter.println(error);
 						}
 					}
-					else if (message.startsWith("2"))
-					{
-						String movies = ImovieDao.findAllMoviesJson();     // call a method in the DAO
-						if( movies != null ) // null returned if userid and password not valid
-						{
-							socketWriter.println(movies);  // send message to client
-						}//sends the movie by id to the client
-						else
-						{
-							String error="error : No movies found!";
-							socketWriter.println(error);
-						}
-					}
 					else if (message.startsWith("3"))
 					{
 						String movieJson=message.substring(2);
 						Movie movie =  gsonBuilder.fromJson(movieJson, new TypeToken<Movie>(){}.getType());
 						boolean inserted=ImovieDao.insertMovie(movie);
 						if(inserted==true) {
-							socketWriter.println("Insert completed");
+							socketWriter.println("Movie has been added");
 						}
 						else {
 							socketWriter.println("Insert failed!");

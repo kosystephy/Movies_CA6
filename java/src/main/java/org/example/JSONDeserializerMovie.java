@@ -11,9 +11,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class JSONDeserializerMovie implements JsonDeserializer<Movie>{
-	public Movie deserialize(JsonElement json,
-							  Type typeOfT,
-							  JsonDeserializationContext context) throws JsonParseException {
+	public Movie deserialize(JsonElement json,Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
 		JsonObject jsonObject = json.getAsJsonObject();
 

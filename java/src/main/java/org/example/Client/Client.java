@@ -48,12 +48,13 @@ public class Client {
 //                socketWriter.println(command);
 				if (command.startsWith("1"))   //we expect the server to return a time
 				{
-					System.out.println("Please enter the Id of the Movie : ");
-					int artistId = in.nextInt();
-					socketWriter.println(command + " " + artistId);
-					in.nextLine();
-				} else if (command.startsWith("2")) {
+
 					socketWriter.println(command);
+				} else if (command.startsWith("2")) {
+					System.out.println("Please enter the Id of the Movie : ");
+					int movieId = in.nextInt();
+					socketWriter.println(command + " " + movieId);
+					in.nextLine();
 				} else if (command.startsWith("3")) {
 					System.out.println("Please enter the details of the Movie:");
 					System.out.println("Movie Id:");
@@ -74,13 +75,13 @@ public class Client {
 					double ratings = in.nextDouble();
 
 					Movie a = new Movie(movieId, title,producer, release_date, type,genre,duration, ratings);
-					String artistJson = gsonParser.toJson(a);
-					socketWriter.println(command + " " + artistJson);
+					String movieJson = gsonParser.toJson(a);
+					socketWriter.println(command + " " + movieJson);
 					in.nextLine();
 				}
 				if (command.startsWith("4"))
 				{
-					System.out.println("Please enter the Id of the Artist you wish  to delete : ");
+					System.out.println("Please enter the Id of the Movie you wish  to delete : ");
 					int movieId = in.nextInt();
 					socketWriter.println(command + " " + movieId);
 					in.nextLine();
@@ -92,21 +93,9 @@ public class Client {
 
 				if (command.startsWith("1"))   //we expect the server to return a time
 				{
-					String movieByIdJson = socketReader.nextLine();
-
-					if (movieByIdJson.startsWith("error")) {
-						System.out.println(movieByIdJson);
-					} else {
-
-						Movie movie = gsonBuilder.fromJson(movieByIdJson, new TypeToken<Movie>() {
-						}.getType());
-						System.out.println("Client message: Displaying Artist By ID: " + movie);
-					}
-				} else if (command.startsWith("2")) {
 					String movieStringJson = socketReader.nextLine();
 					if (movieStringJson.startsWith("error")) {
 						System.out.println(movieStringJson);
-					} else {
 						System.out.println("Client message: Displaying All Movies: ");
 
 						Movie[] movies = gsonBuilder.fromJson(movieStringJson, Movie[].class);
@@ -116,7 +105,18 @@ public class Client {
 						}
 
 					}
+				} else if (command.startsWith("2")) {
 
+					String movieByIdJson = socketReader.nextLine();
+
+					if (movieByIdJson.startsWith("error")) {
+						System.out.println(movieByIdJson);
+					} else {
+
+						Movie movie = gsonBuilder.fromJson(movieByIdJson, new TypeToken<Movie>() {
+						}.getType());
+						System.out.println("Client message: Displaying Movie By ID: " + movie);
+					}
 				} else if (command.startsWith("3")) {
 					String message = socketReader.nextLine();
 					System.out.println("Client message: " + message);
@@ -147,7 +147,7 @@ public class Client {
 	private static void printMenu() {
 		System.out.println("Menu Options");
 		System.out.println("Please select an option");
-		System.out.println("1-Find all movies");
+		System.out.println("1-Display all movies");
 		System.out.println("2-Find movies by Id");
 		System.out.println("3-Insert Movies");
 		System.out.println("4-Delete Movies");
