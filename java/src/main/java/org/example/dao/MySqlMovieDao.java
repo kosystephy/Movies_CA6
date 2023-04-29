@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class MySqlMovieDao extends MySqlDao implements MovieDaoInterface
@@ -86,22 +87,26 @@ public class MySqlMovieDao extends MySqlDao implements MovieDaoInterface
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 		Movie movie = null;
+		HashSet<Integer> movieCache = new HashSet<>();
+		List<Movie> movieList1=new ArrayList<>();
+
+		try {
+			connection = this.getConnection();
+			movieList1 = findAllMovie();
+			for (Movie movies : movieList1) {
+				movieCache.add(movies.getMovie_ID());
+			}
+			if (movieCache.contains(movieID)) {
+				String getMovieQuery = "SELECT * FROM movie WHERE movieID = ?";
+				preparedStatement = connection.prepareStatement(getMovieQuery);
+				preparedStatement.setInt(1, movieID);
 
 
-		try
-		{
-				 connection = this.getConnection();
-			String getMovieQuery = "SELECT * FROM movie WHERE movieID = ?";
-			preparedStatement = connection.prepareStatement(getMovieQuery);
-			preparedStatement.setInt(1, movieID);
-
-
-			 rs = preparedStatement.executeQuery();
-							if(rs.next())
-				{
-					movieID=rs.getInt("MovieID");
+				rs = preparedStatement.executeQuery();
+				if (rs.next()) {
+					movieID = rs.getInt("MovieID");
 					String title = rs.getString("Title");
-					String producer  = rs.getString("Producer");
+					String producer = rs.getString("Producer");
 					String release_date = rs.getString("Release_Date");
 					String type = rs.getString("Type");
 					String genre = rs.getString("Genre");
@@ -110,10 +115,10 @@ public class MySqlMovieDao extends MySqlDao implements MovieDaoInterface
 
 //					List<String> ingredients = getIngredientSet(movieID);
 
-					movie = new Movie(movieID, title,producer, release_date, type,genre,duration, ratings);
+					movie = new Movie(movieID, title, producer, release_date, type, genre, duration, ratings);
 				}
 			}
-
+		}
 		catch(SQLException e)
 		{
 			throw new DaoException("findMovieById() " + e.getMessage());
