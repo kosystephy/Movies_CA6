@@ -5,7 +5,7 @@ import org.example.IFilter;
 import org.example.dto.Movie;
 
 import org.example.exceptions.DaoException;
-//import com.google.gson.Gson;
+import com.google.gson.Gson;
 
 
 import java.sql.Connection;
@@ -293,5 +293,28 @@ public class MySqlMovieDao extends MySqlDao implements MovieDaoInterface
 
 		return filteredList;
 	}
+
+	@Override
+	public String findAllMoviesJson() throws DaoException
+	{
+		List<Movie> movieList = findAllMovie();
+
+		if(movieList == null || movieList.isEmpty()) return null;
+
+		Gson gsonParser = new Gson();
+		return gsonParser.toJson(movieList);
+	}
+
+	@Override
+	public String findMoviesByIdJson(int movieId) throws DaoException
+	{
+		Movie movie = findMovieByID(movieId);
+
+		if(movie == null) return null;
+
+		Gson gsonParser = new Gson();
+		return gsonParser.toJson(movie);
+	}
+
 
 }
