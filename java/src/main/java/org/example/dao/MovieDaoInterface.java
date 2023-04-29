@@ -15,9 +15,9 @@ public interface MovieDaoInterface
 	public void insertMovieTableRecord(int movie_ID, String title, String producer, String release_date, String type, String genre, String duration, double ratings) throws DaoException;
 	public boolean checkMovieExists(String title) throws DaoException;
 	public boolean insertMovie(Movie movie) throws DaoException;
-	List<Movie> filterMovies(IFilter filter) throws DaoException;
-//	String findAllMoviesJson() throws DaoException;
-//	String findMoviesByNameJson(String title) throws DaoException;
+	public	List<Movie> filterMovies(IFilter filter) throws DaoException;
+	public String findAllMoviesJson() throws DaoException;
+	public String findMoviesByIdJson(int movieId) throws DaoException;
 
 
 }
