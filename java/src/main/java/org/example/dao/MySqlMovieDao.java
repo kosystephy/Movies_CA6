@@ -1,7 +1,7 @@
 package org.example.dao;
 
 
-import org.example.IFilter;
+import org.example.BusinessObjects.IFilter;
 import org.example.dto.Movie;
 
 import org.example.exceptions.DaoException;

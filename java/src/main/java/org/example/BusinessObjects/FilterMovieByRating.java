@@ -1,4 +1,4 @@
-package org.example;
+package org.example.BusinessObjects;
 import org.example.dto.Movie;
 public class FilterMovieByRating implements IFilter {
 	private double rating,maxRating;

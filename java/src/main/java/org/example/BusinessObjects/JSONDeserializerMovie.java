@@ -1,4 +1,4 @@
-package org.example;
+package org.example.BusinessObjects;
 
 import org.example.dto.Movie;
 import java.lang.reflect.Type;

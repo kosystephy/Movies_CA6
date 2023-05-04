@@ -1,6 +1,6 @@
-package org.example;
+package org.example.BusinessObjects;
 import org.example.dto.Movie;
-public class FilterMovieByDuration implements IFilter  {
+public class FilterMovieByDuration implements IFilter {
 	private String duration;
 
 	public FilterMovieByDuration(String duration) {

@@ -1,5 +1,5 @@
 package org.example.Server;
-import org.example.JSONDeserializerMovie;
+import org.example.BusinessObjects.JSONDeserializerMovie;
 import org.example.dto.Movie;
 import org.example.dao.MovieDaoInterface;
 import org.example.dao.MySqlMovieDao;
@@ -14,8 +14,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.Scanner;
 
 

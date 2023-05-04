@@ -1,9 +1,8 @@
 package org.example.Client;
-import org.example.JSONDeserializerMovie;
+import org.example.BusinessObjects.JSONDeserializerMovie;
 import org.example.dto.Movie;
 
 
-import org.example.exceptions.DaoException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
